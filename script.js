@@ -4,7 +4,7 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var passwordLength = prompt("Enter desired character length of the password. \nMust be at least 8 characters and no more than 128 characters.");
-  var password = generatePassword();
+  // var password = generatePassword();
   var passwordText = document.querySelector("#password");
   var lowerCase = ("Do you want Lowercase Characters?");
   var upperCase = ("Do you want Uppercase Characters?");
@@ -20,7 +20,7 @@ function writePassword() {
     var symbol = confirm(special);
     
     if (lower || upper || number || symbol) {
-      
+      var filtered = [{lower}, {upper}, {number}, {symbol}].filter(item => Object.values(item)[0]);
     }
 
     else {
@@ -34,7 +34,7 @@ function writePassword() {
 
   function randomLower() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97)
-   } 
+  } 
    
   function randomUpper() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
