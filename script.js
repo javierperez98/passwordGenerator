@@ -5,7 +5,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var passwordLength = prompt("Enter desired character length of the password. \nMust be at least 8 characters and no more than 128 characters.");
   var passwordText = document.querySelector("#password");
-  
+  // Checks for password length
   if (passwordLength > 7 && passwordLength < 129) {
     var lower = confirm("Do you want Lowercase Characters?");
     var upper = confirm("Do you want Uppercase Characters?");
@@ -17,28 +17,42 @@ function writePassword() {
     var getNumber = "1234567890";
     var getSymbol = "`~!@#$%^&*()-_=+<>?";
     var generatePassword = "";
-    
+    var filter = [{lower}, {upper}, {number}, {symbol}].filter(item => Object.values(item)[0]);
+    var length = passwordLength - filter.length;
+	// Checks if at least 1 criteria is selected
     if (lower || upper || number || symbol) {
       if (lower) {
         pool+= getLower;
+        const addLower = Math.floor(Math.random() * getLower.length);
+        const added = (getLower.charAt(addLower));
+        generatePassword = generatePassword + added;
       }
       if (upper) {
         pool+= getUpper;
+        const addUpper = Math.floor(Math.random() * getUpper.length);
+        const added = (getUpper.charAt(addUpper));
+        generatePassword = generatePassword + added;
       }
       if (number) {
         pool+= getNumber;
+        const addNumber = Math.floor(Math.random() * getNumber.length);
+        const added = (getNumber.charAt(addNumber));
+        generatePassword = generatePassword + added;
       }
       if (symbol) {
         pool+= getSymbol;
+        const addSymbol = Math.floor(Math.random() * getSymbol.length);
+        const added = (getSymbol.charAt(addSymbol));
+        generatePassword = generatePassword + added;
       }
-
-      for (i = 0; i < passwordLength; i++) {
+      // Password characters selector
+      for (i = 0; i < length; i++) {
         var random = (Math.floor(Math.random() * pool.length));
         var result = (pool.charAt(random));
         generatePassword = generatePassword + result;
       }
       passwordText.textContent = generatePassword;
-      console.log(generatePassword);
+
     } else {
     alert("Try again! You must pick at least one Criteria!");
     }
