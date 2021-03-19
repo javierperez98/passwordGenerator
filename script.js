@@ -4,52 +4,48 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var passwordLength = prompt("Enter desired character length of the password. \nMust be at least 8 characters and no more than 128 characters.");
-  // var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  var lowerCase = ("Do you want Lowercase Characters?");
-  var upperCase = ("Do you want Uppercase Characters?");
-  var numeric = ("Do you want Number Characters?");
-  var special = ("Do you want Special Characters?");
   
-  passwordText.value = password;
-
   if (passwordLength > 7 && passwordLength < 129) {
-    var lower = confirm(lowerCase);
-    var upper = confirm(upperCase);
-    var number = confirm(numeric);
-    var symbol = confirm(special);
+    var lower = confirm("Do you want Lowercase Characters?");
+    var upper = confirm("Do you want Uppercase Characters?");
+    var number = confirm("Do you want Number Characters?");
+    var symbol = confirm("Do you want Special Characters?");
+    var pool = "";
+    var getLower = "abcdefghijklmnopqrstuvwxyz";
+    var getUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var getNumber = "1234567890";
+    var getSymbol = "`~!@#$%^&*()-_=+<>?";
+    var generatePassword = "";
     
     if (lower || upper || number || symbol) {
-      var filtered = [{lower}, {upper}, {number}, {symbol}].filter(item => Object.values(item)[0]);
-    }
+      if (lower) {
+        pool+= getLower;
+      }
+      if (upper) {
+        pool+= getUpper;
+      }
+      if (number) {
+        pool+= getNumber;
+      }
+      if (symbol) {
+        pool+= getSymbol;
+      }
 
-    else {
-    alert("Try again! You must chosse at least one Criteria!");
+      for (i = 0; i < passwordLength; i++) {
+        var random = (Math.floor(Math.random() * pool.length));
+        var result = (pool.charAt(random));
+        generatePassword = generatePassword + result;
+      }
+      passwordText.textContent = generatePassword;
+      console.log(generatePassword);
+    } else {
+    alert("Try again! You must pick at least one Criteria!");
     }
-  }
-
-  else {
+  } else {
     alert("Try again! Password must be at least 8 characters and no more than 128 characters!")
   }
-
-  function randomLower() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 97)
-  } 
-   
-  function randomUpper() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-  }       
-  function randomNumber() {
-  return +String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-  }
-   
-  function randomSymbol() {
-   const symbols = '!@#$%^&*(){}[]=<>/,.'
-   return symbols[Math.floor(Math.random() * symbols.length)];
-  }
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
- 
