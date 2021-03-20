@@ -1,7 +1,11 @@
 ## Password Generator Javascript
 
 ## Description
-
+- In this project I created a random password generator using javascript and a little bit of HTML and CSS.
+- I learned a lot when it comes to Javascript and this project deeped my knownledge even more on using and understanding 
+how useful it is. 
+- This project was no easy task I was challenging yet enjoyable.
+- I learned how to use functions, for loops, arrays, strings, math random and more.
 
 ## Installation
 - Clone the Repo in your Terminal (for Mac) or Bash(for PC).
@@ -9,15 +13,29 @@
 - Using HTTPS key: git clone 
 
 ## Usage
-
-![NavBar]()
-![Main]()
-![AsideBar]()
-![Footer]()
+- The webpage
+![password](images/password.png)
+- When button is clicked this Alert pops up asking for pass word length
+![button]images/buttonpress.png
+- If the pass word is less than 8 characters or more than 128 this will pop up
+![error](images/errorlength.png)
+- Then user is asked if they would like Lowercase, Uppercase, numbers and symbols in the password
+![lower](images/lower.png)
+![upper](images/upper.png)
+![special](images/special.png)
+![number](images/number.png)
+- If user doesnt at least click okay for a character type this will pop up
+![min](images/minone.png)
 
 ## Credits
 - https://www.w3schools.com/css/
 - https://www.google.com/
+- https://stackoverflow.com/
+- https://javascript.com
+- https://developer.mozilla.org/en-US/
+- Office Hours with John
+- Classmate help from Christian
+
 
 ## License
 - MIT License
