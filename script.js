@@ -10,8 +10,9 @@ const symbolCheck = document.getElementById("symbolCheck");
 generatePassword = (e) => {
 	e.preventDefault();
 	console.log("Generate Password");
-	console.log(getSelectedCheckboxValues("checked"));
+	const password = getSelectedCheckboxValues("checked");
 	console.log(passwordLength.value);
+	passwordText.value = password;
 };
 
 setPasswordLength = (e) => {
@@ -21,10 +22,16 @@ setPasswordLength = (e) => {
 };
 
 getSelectedCheckboxValues = (name) => {
-	const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
 	let values = [];
+	const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
 	checkboxes.forEach((checkbox) => {
-		values.push(checkbox.value);
+		var shuffled = checkbox.value
+			.split("")
+			.sort(function () {
+				return 0.5 - Math.random();
+			})
+			.join("");
+		values.push(shuffled);
 	});
 	if (values.length > 0) {
 		generateBtn.removeAttribute("disabled");
@@ -36,7 +43,7 @@ getSelectedCheckboxValues = (name) => {
 };
 
 activeBtn = () => {
-	console.log(getSelectedCheckboxValues("checked"));
+	getSelectedCheckboxValues("checked");
 };
 
 numberCheck.addEventListener("change", activeBtn);
