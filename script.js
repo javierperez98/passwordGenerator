@@ -70,7 +70,7 @@ generatePassword = (e) => {
 setPasswordLength = (e) => {
 	e.preventDefault();
 	const length = e.target.value;
-	passwordLengthLable.innerHTML = `Set a Password Length: ${length} Characters long`;
+	passwordLengthLable.innerHTML = `Set a Password Length: ${length}`;
 };
 
 getSelectedCheckboxValues = (name) => {
