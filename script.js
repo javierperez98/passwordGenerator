@@ -10,16 +10,61 @@ const symbolCheck = document.getElementById("symbolCheck");
 generatePassword = (e) => {
 	e.preventDefault();
 	const password = getSelectedCheckboxValues("checked");
-	const length = passwordLength.value;
-	console.log(length);
-	console.log(password);
+	let length = passwordLength.value;
 	let randomPassword = "";
-	if (password.length === 1) {
-		for (var i = 0, n = password[0].length; i < length; ++i) {
-			randomPassword += password[0].charAt(Math.floor(Math.random() * n));
-		}
-		return (passwordText.value = randomPassword);
+	let range = length / password.length;
+
+	getCharacter = (index) => {
+		randomPassword += password[index].charAt(
+			Math.floor(Math.random() * password[index].length)
+		);
+	};
+
+	handleRemainder = () => {
+		const index = Math.floor(Math.random() * password.length);
+		getCharacter(index);
+	};
+
+	if (length % password.length === 1) {
+		range = (length - 1) / password.length;
+		handleRemainder();
 	}
+	if (length % password.length === 2) {
+		range = (length - 2) / password.length;
+		for (var i = 0; i < 2; ++i) {
+			handleRemainder();
+		}
+	}
+	if (length % password.length === 3) {
+		range = (length - 3) / password.length;
+		for (var i = 0; i < 3; ++i) {
+			handleRemainder();
+		}
+	}
+
+	for (var i = 0; i < range; ++i) {
+		if (password[0]) {
+			getCharacter(0);
+		}
+		if (password[1]) {
+			getCharacter(1);
+		}
+		if (password[2]) {
+			getCharacter(2);
+		}
+		if (password[3]) {
+			getCharacter(3);
+		}
+	}
+
+	var shuffled = randomPassword
+		.split("")
+		.sort(function () {
+			return 0.5 - Math.random();
+		})
+		.join("");
+
+	return (passwordText.value = shuffled);
 };
 
 setPasswordLength = (e) => {
@@ -32,13 +77,7 @@ getSelectedCheckboxValues = (name) => {
 	let values = [];
 	const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
 	checkboxes.forEach((checkbox) => {
-		var shuffled = checkbox.value
-			.split("")
-			.sort(function () {
-				return 0.5 - Math.random();
-			})
-			.join("");
-		values.push(shuffled);
+		values.push(checkbox.value);
 	});
 	if (values.length > 0) {
 		generateBtn.removeAttribute("disabled");
