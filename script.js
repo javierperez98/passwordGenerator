@@ -9,10 +9,17 @@ const symbolCheck = document.getElementById("symbolCheck");
 
 generatePassword = (e) => {
 	e.preventDefault();
-	console.log("Generate Password");
 	const password = getSelectedCheckboxValues("checked");
-	console.log(passwordLength.value);
-	passwordText.value = password;
+	const length = passwordLength.value;
+	console.log(length);
+	console.log(password);
+	let randomPassword = "";
+	if (password.length === 1) {
+		for (var i = 0, n = password[0].length; i < length; ++i) {
+			randomPassword += password[0].charAt(Math.floor(Math.random() * n));
+		}
+		return (passwordText.value = randomPassword);
+	}
 };
 
 setPasswordLength = (e) => {
