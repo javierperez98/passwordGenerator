@@ -46,16 +46,6 @@ git clone git@github.com:javierperez98/passwordGenerator.git
 git clone https://github.com/javierperez98/passwordGenerator.git
 ```
 
-Next you'll have to install all the required node modules by opening the index.js file using terminal/bash and typing in the following command.
-
-```md
-npm i
-or
-npm install
-and then
-npm start
-```
-
 ## `Usage`
 
 <!-- Provide instructions and examples for use. Include screenshots as needed. -->
